@@ -1,0 +1,82 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using System.Data.Sql;
+using System.Data.SqlClient;
+
+namespace RegisterForm
+{
+    public partial class RegisterForm : Form
+    {
+        SqlCommand cmd;
+        SqlConnection con;
+
+        public RegisterForm()
+        {
+            InitializeComponent();
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox5_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            textBox1.Text = string.Empty;
+            textBox2.Text = string.Empty;
+            textBox3.Text = string.Empty;
+            textBox4.Text = string.Empty;
+            textBox5.Text = string.Empty;
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        [Obsolete]
+        private void button3_Click(object sender, EventArgs e)
+        {
+            con = new SqlConnection(@"Data Source=.;Initial Catalog=REGISTER;Integrated Security=True");
+            con.Open();
+            cmd = new SqlCommand("INSERT INTO Register (Full_Name,Email_ID,Passcolor,Phone_no) VALUES(@Full_Name,@Email_ID,@Passcolor,@Phone_no)", con);
+            cmd.Parameters.Add("@Full_Name",textBox1.Text);
+            cmd.Parameters.Add("@Email_ID", textBox2.Text);
+            cmd.Parameters.Add("@Passcolor", listBox2.Items.ToString());
+            cmd.Parameters.Add("@Phone_no", textBox4.Text);
+            con.Close();
+            MessageBox.Show("save successfuly "); 
+            this.Hide();
+            //ThreeLevel tl = new ThreeLevel();
+            //tl.Show();
+
+        }
+        private void label9_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void listBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }  
+    }
+}
